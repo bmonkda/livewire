@@ -11,7 +11,10 @@
                 <x-welcome />
             </div> --}}
 
-            @livewire('create-post')
+            @livewire('create-post',[
+            'title' => "Hola Mundo desde la vista",
+            'user' => 1,
+            ])
 
 
         </div>
