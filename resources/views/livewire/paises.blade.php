@@ -1,5 +1,7 @@
 <div>
 
+    @livewire('hijo')
+
     <form class="mb-4" wire:submit='save'>
         <x-input 
             placeholder="Ingrese país" 
