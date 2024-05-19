@@ -18,6 +18,8 @@ class Paises extends Component
     
     public $count = 0;
 
+    public $open = true;
+
     function save() {
         array_push($this->paises, $this->pais);
         $this->reset('pais');

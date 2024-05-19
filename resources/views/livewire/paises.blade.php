@@ -1,7 +1,7 @@
 <div>
 
-    <x-button class="mb-4" wire:click="$set('count', '0')">
-        Resetear
+    <x-button class="mb-4" wire:click="$toggle('open', '0')">
+        Mostrar / Ocultar
     </x-button>
 
     <form class="mb-4" wire:submit='save'>
@@ -15,23 +15,25 @@
         </x-button>
     </form>
 
-    <ul class="list-disc list-inside space-y-2">
-        @foreach ($paises as $index => $pais)
-            <li wire:key='pais-{{$index}}'>
+    @if ($open)
+        <ul class="list-disc list-inside space-y-2">
+            @foreach ($paises as $index => $pais)
+                <li wire:key='pais-{{$index}}'>
 
-                <span wire:mouseenter='changeActive("{{ $pais }}")'>
-                    ({{$index}}) {{ $pais }}
-                </span>
+                    <span wire:mouseenter='changeActive("{{ $pais }}")'>
+                        ({{$index}}) {{ $pais }}
+                    </span>
 
-                <x-danger-button wire:click='delete({{$index}})'>
-                    X
-                </x-danger-button>
-            </li>
+                    <x-danger-button wire:click='delete({{$index}})'>
+                        X
+                    </x-danger-button>
+                </li>
 
-        @endforeach
-    </ul>
+            @endforeach
+        </ul>
+    @endif
 
     {{-- {{$active}} --}}
-    {{$count}}
+    {{-- {{$count}} --}}
 
 </div>
