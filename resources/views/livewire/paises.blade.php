@@ -1,7 +1,10 @@
 <div>
 
     <form class="mb-4" wire:submit='save'>
-        <x-input placeholder="Ingrese país" wire:model='pais'/>
+        <x-input 
+            placeholder="Ingrese país" 
+            wire:model='pais'
+            wire:keydown.space='increment' />
 
         <x-button>
             Agregar
@@ -24,6 +27,7 @@
         @endforeach
     </ul>
 
-    {{$active}}
+    {{-- {{$active}} --}}
+    {{$count}}
 
 </div>

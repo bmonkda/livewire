@@ -15,6 +15,8 @@ class Paises extends Component
     public $pais;
 
     public $active;
+    
+    public $count = 0;
 
     function save() {
         array_push($this->paises, $this->pais);
@@ -27,6 +29,10 @@ class Paises extends Component
 
     function changeActive($pais) {
         $this->active = $pais;
+    }
+
+    function increment() {
+        $this->count++;
     }
 
     public function render()
