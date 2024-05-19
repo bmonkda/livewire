@@ -11,7 +11,11 @@
     <ul class="list-disc list-inside space-y-2">
         @foreach ($paises as $index => $pais)
             <li wire:key='pais-{{$index}}'>
-                ({{$index}}) {{ $pais }}
+
+                <span wire:mouseenter='changeActive("{{ $pais }}")'>
+                    ({{$index}}) {{ $pais }}
+                </span>
+
                 <x-danger-button wire:click='delete({{$index}})'>
                     X
                 </x-danger-button>
@@ -19,4 +23,7 @@
 
         @endforeach
     </ul>
+
+    {{$active}}
+
 </div>

@@ -14,6 +14,8 @@ class Paises extends Component
 
     public $pais;
 
+    public $active;
+
     function save() {
         array_push($this->paises, $this->pais);
         $this->reset('pais');
@@ -21,6 +23,10 @@ class Paises extends Component
 
     function delete($index) {
         unset($this->paises[$index]);
+    }
+
+    function changeActive($pais) {
+        $this->active = $pais;
     }
 
     public function render()
