@@ -1,6 +1,8 @@
 <div>
 
-    @livewire('hijo')
+    <x-button class="mb-4" wire:click="$set('count', '0')">
+        Resetear
+    </x-button>
 
     <form class="mb-4" wire:submit='save'>
         <x-input 
