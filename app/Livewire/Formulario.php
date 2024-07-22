@@ -18,6 +18,17 @@ class Formulario extends Component
 
     public $posts;
 
+    public $postEditId = '';
+
+    public $postEdit = [
+        'category_id'=> '', 
+        'title'=> '', 
+        'content'=> '',
+        'tags'=>[]
+    ];
+
+    public $open = false;
+
     public function mount() {
         $this->categories = Category::all();
         $this->tags = Tag::all();
@@ -41,6 +52,37 @@ class Formulario extends Component
 
         $this->posts = Post::all();
         
+    }
+
+    public function edit($postId)
+    {
+        $this->open = true;
+
+        $this->postEditId = $postId;
+
+        $post = Post::find($postId);
+
+        $this->postEdit['category_id'] = $post->category_id;
+        $this->postEdit['title'] = $post->title;
+        $this->postEdit['content'] = $post->content;
+        $this->postEdit['tags'] = $post->tags->pluck('id')->toArray();
+
+    }
+
+    public function update()
+    {
+        $post = Post::find($this->postEditId);
+        $post->update([
+            'category_id' => $this->postEdit['category_id'],
+            'title' => $this->postEdit['title'],
+            'content' => $this->postEdit['content']
+        ]);
+
+        $post->tags()->sync($this->postEdit['tags']);
+
+        $this->reset(['postEditId', 'postEdit', 'open']);
+        
+        $this->posts = Post::all();
     }
 
     public function render()
