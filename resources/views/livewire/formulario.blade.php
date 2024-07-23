@@ -64,7 +64,7 @@
                             Editar
                         </x-button>
 
-                        <x-danger-button>
+                        <x-danger-button wire:click='destroy({{ $post->id }})'>
                             Eliminar
                         </x-danger-button>
                     </div>

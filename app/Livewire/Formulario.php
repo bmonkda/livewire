@@ -85,6 +85,16 @@ class Formulario extends Component
         $this->posts = Post::all();
     }
 
+    public function destroy($postId)
+    {
+        $post = Post::find($postId);
+
+        $post->delete();
+
+        $this->posts = Post::all();
+
+    }
+
     public function render()
     {
         return view('livewire.formulario');
