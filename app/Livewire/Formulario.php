@@ -37,11 +37,20 @@ class Formulario extends Component
     }
 
     public function save() {
-        // $post = Post::create([
-        //     'category_id' => $this->category_id, 
-        //     'title' => $this->title, 
-        //     'content' => $this->content
-        // ]);
+
+        $this->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required|exists:categories,id',
+            'selectedTags' => 'required|array',
+
+        ]);
+
+        /* $post = Post::create([
+            'category_id' => $this->category_id, 
+            'title' => $this->title, 
+            'content' => $this->content
+        ]); */
         $post = Post::create(
             $this->only('category_id','title','content')
         );

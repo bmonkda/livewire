@@ -4,14 +4,21 @@
         <form wire:submit='save'>
             <div class="mb-4">
                 <x-label for="">Nombre</x-label>
-                <x-input class="w-full" wire:model='title' required>
+                <x-input class="w-full" wire:model='title' >
                 </x-input>
+                {{-- @error('title')
+                <div class="text-sm text-red-500">
+                    {{$message}}
+                </div>
+                @enderror --}}
+                <x-input-error for='title' />
             </div>
 
             <div class="mb-4">
                 <x-label for="">Contenido</x-label>
-                <x-textarea class="w-full" wire:model='content' required>
+                <x-textarea class="w-full" wire:model='content' >
                 </x-textarea>
+                <x-input-error for='content' />
             </div>
 
 
@@ -26,6 +33,7 @@
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </x-select>
+                <x-input-error for='category_id' />
             </div>
 
 
@@ -42,6 +50,7 @@
                     </li>
                     @endforeach
                 </ul>
+                <x-input-error for='selectedTags' />
 
             </div>
 
@@ -73,7 +82,7 @@
         </ul>
     </div>
 
-    @if ($open)
+    {{-- @if ($open) --}}
 
     {{-- Modal con Formulario de edición --}}
     {{-- <div class="bg-gray-800 bg-opacity-25 fixed inset-0">
@@ -139,7 +148,7 @@
         </div>
     </div> --}}
 
-    @endif
+    {{-- @endif --}}
 
     <form wire:submit='update'>
         <x-dialog-modal wire:model='open'>
