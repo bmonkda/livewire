@@ -4,7 +4,7 @@
         <form wire:submit='save'>
             <div class="mb-4">
                 <x-label for="">Nombre</x-label>
-                <x-input class="w-full" wire:model='postCreate.title' >
+                <x-input class="w-full" wire:model.live='postCreate.title' >
                 </x-input>
                 {{-- @error('title')
                 <div class="text-sm text-red-500">
