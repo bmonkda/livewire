@@ -21,13 +21,43 @@ class Formulario extends Component
     public $postEditId = '';
 
     public $postEdit = [
-        'category_id'=> '', 
         'title'=> '', 
         'content'=> '',
+        'category_id'=> '', 
+        'tags'=>[]
+    ];
+
+    public $postCreate = [
+        'title'=> '', 
+        'content'=> '',
+        'category_id'=> '', 
         'tags'=>[]
     ];
 
     public $open = false;
+
+
+    public function rules() {
+        return[
+            'postCreate.title' => 'required',
+            'postCreate.content' => 'required',
+            'postCreate.category_id' => 'required|exists:categories,id',
+            'postCreate.tags' => 'required|array',
+        ];
+    }
+
+    public function messages() {
+        return[
+            'postCreate.title.required' => 'El campo título es requerido',
+        ];
+    }
+
+    public function validationAttributes() {
+        return[
+            'postCreate.category_id' => 'categoría',
+        ];
+
+    }
 
     public function mount() {
         $this->categories = Category::all();
@@ -38,26 +68,38 @@ class Formulario extends Component
 
     public function save() {
 
-        $this->validate([
+        $this->validate();
+
+        /* $this->validate([
             'title' => 'required',
             'content' => 'required',
             'category_id' => 'required|exists:categories,id',
             'selectedTags' => 'required|array',
 
-        ]);
+        ],[
+            'title.required' => 'El campo título es requerido',
+        ],[
+            'category_id' => 'categoría'
+        ]); */
 
         /* $post = Post::create([
             'category_id' => $this->category_id, 
             'title' => $this->title, 
             'content' => $this->content
         ]); */
-        $post = Post::create(
-            $this->only('category_id','title','content')
+        $post = Post::create([
+            'category_id' => $this->postCreate['category_id'], 
+            'title' => $this->postCreate['title'], 
+            'content' => $this->postCreate['content']
+        ]
+            /* $this->only('category_id','title','content') */
+            
         );
 
-        $post->tags()->attach($this->selectedTags);
+        $post->tags()->attach($this->postCreate['tags']);
 
-        $this->reset(['category_id','title','content','selectedTags']);
+        // $this->reset(['category_id','title','content','selectedTags']);
+        $this->reset(['postCreate']);
 
         $this->posts = Post::all();
         
@@ -65,6 +107,8 @@ class Formulario extends Component
 
     public function edit($postId)
     {
+        $this->resetValidation();
+
         $this->open = true;
 
         $this->postEditId = $postId;
@@ -80,6 +124,15 @@ class Formulario extends Component
 
     public function update()
     {
+
+        $this->validate([
+            'postEdit.title' => 'required',
+            'postEdit.content' => 'required',
+            'postEdit.category_id' => 'required|exists:categories,id',
+            'postEdit.tags' => 'required|array',
+
+        ]);
+
         $post = Post::find($this->postEditId);
         $post->update([
             'category_id' => $this->postEdit['category_id'],
