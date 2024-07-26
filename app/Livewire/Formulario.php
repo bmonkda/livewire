@@ -32,6 +32,8 @@ class Formulario extends Component
         $this->postCreate->save();
 
         $this->posts = Post::all();
+
+        $this->dispatch('post-created');
         
     }
 
