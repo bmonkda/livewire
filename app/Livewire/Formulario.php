@@ -33,12 +33,15 @@ class Formulario extends Component
 
         $this->posts = Post::all();
 
-        $this->dispatch('post-created');
+        $this->dispatch('post-created', 'Nuevo artículo creado');
         
     }
 
     public function edit($postId)
     {
+        // si $this->resetValidation() da error en el Form Objets PostEditForm lo colocamos en este método
+        // a mi me funcionó en el Form Objets PostEditForm por eso comenté la línea aquí abajo
+
         // $this->resetValidation();
 
         $this->postEdit->edit($postId);
@@ -50,6 +53,8 @@ class Formulario extends Component
         $this->postEdit->update();
         
         $this->posts = Post::all();
+
+        $this->dispatch('post-created', 'Artículo actualizado');
     }
 
     public function destroy($postId)
@@ -59,6 +64,8 @@ class Formulario extends Component
         $post->delete();
 
         $this->posts = Post::all();
+
+        $this->dispatch('post-created', 'Artículo eliminado');
 
     }
 

@@ -7,16 +7,12 @@ use Livewire\Component;
 
 class Comments extends Component
 {
-    public $comments = [
-        'Artículo 1 creado',
-        'Artículo 2 creado',
-        'Artículo 3 creado',
-    ];
+    public $comments = [];
 
     #[On('post-created')]
-    public function addComment(){
+    public function addComment($comment){
 
-        array_unshift($this->comments, 'Nuevo artículo creado');
+        array_unshift($this->comments, $comment);
 
     }
 

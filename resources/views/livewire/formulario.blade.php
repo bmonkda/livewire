@@ -4,7 +4,7 @@
         <form wire:submit='save'>
             <div class="mb-4">
                 <x-label for="">Nombre</x-label>
-                <x-input class="w-full" wire:model.live='postCreate.title' >
+                <x-input class="w-full" wire:model.live='postCreate.title'>
                 </x-input>
                 {{-- @error('title')
                 <div class="text-sm text-red-500">
@@ -16,7 +16,7 @@
 
             <div class="mb-4">
                 <x-label for="">Contenido</x-label>
-                <x-textarea class="w-full" wire:model='postCreate.content' >
+                <x-textarea class="w-full" wire:model='postCreate.content'>
                 </x-textarea>
                 <x-input-error for='postCreate.content' />
             </div>
@@ -93,14 +93,14 @@
 
                 <div class="mb-4">
                     <x-label for="">Nombre</x-label>
-                    <x-input class="w-full" wire:model='postEdit.title' >
+                    <x-input class="w-full" wire:model='postEdit.title'>
                     </x-input>
                     <x-input-error for='postEdit.title' />
                 </div>
 
                 <div class="mb-4">
                     <x-label for="">Contenido</x-label>
-                    <x-textarea class="w-full" wire:model='postEdit.content' >
+                    <x-textarea class="w-full" wire:model='postEdit.content'>
                     </x-textarea>
                     <x-input-error for='postEdit.content' />
                 </div>
@@ -154,5 +154,13 @@
 
         </x-dialog-modal>
     </form>
+
+    @push('js')
+        <script>
+            Livewire.on('post-created', (comment) => {
+                console.log(comment[0]);
+            });
+        </script>
+    @endpush
 
 </div>
