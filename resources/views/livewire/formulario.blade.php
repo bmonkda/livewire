@@ -157,15 +157,12 @@
 
     @push('js')
         <script>
-<<<<<<< HEAD
             Livewire.on('post-created', (comment) => {
                 console.log(comment[0]);
             });
-=======
             Livewire.on('post-created', (comment)=>{
                 console.log(comment[0]);
             })
->>>>>>> main
         </script>
     @endpush
 
