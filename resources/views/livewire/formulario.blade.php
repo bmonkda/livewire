@@ -24,7 +24,7 @@
 
             <div class="mb-4">
                 <x-label for="">Categoría</x-label>
-                <x-select class="w-full" wire:model='postCreate.category_id'>
+                <x-select class="w-full" wire:model.live='postCreate.category_id'>
 
                     <option value="" disabled>
                         Seleccione una categoría
@@ -107,7 +107,7 @@
 
                 <div class="mb-4">
                     <x-label for="">Categoría</x-label>
-                    <x-select class="w-full" wire:model='postEdit.category_id'>
+                    <x-select class="w-full" wire:model="postEdit.category_id">
 
                         <option value="" disabled>
                             Seleccione una categoría
@@ -157,9 +157,15 @@
 
     @push('js')
         <script>
+<<<<<<< HEAD
             Livewire.on('post-created', (comment) => {
                 console.log(comment[0]);
             });
+=======
+            Livewire.on('post-created', (comment)=>{
+                console.log(comment[0]);
+            })
+>>>>>>> main
         </script>
     @endpush
 

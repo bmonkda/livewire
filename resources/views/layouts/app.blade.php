@@ -43,6 +43,9 @@
         @livewireScripts
 
         @stack('js')
+<<<<<<< HEAD
         
+=======
+>>>>>>> main
     </body>
 </html>
