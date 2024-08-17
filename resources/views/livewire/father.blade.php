@@ -12,6 +12,6 @@
             'name' => $name 
         ]) --}}
 
-        <livewire:children :name="$name"/>
+        <livewire:children wire:model="name" />
     </div>
 </div>
